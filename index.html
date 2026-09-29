@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tratamento de Tributos DUIMP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Tratamento de Tributos DUIMP</h1>
+    <p>Separa os tributos e valores unidos por “|” em colunas individuais. Tudo roda no seu navegador — nenhum arquivo é enviado a servidor.</p>
+  </header>
+
+  <label class="drop" id="drop">
+    <strong>Arraste a planilha aqui ou clique para escolher</strong>
+    <span class="muted">.xlsx · você pode selecionar vários meses de uma vez</span>
+    <input type="file" id="file" accept=".xlsx,.xlsm,.xls,.csv" multiple>
+  </label>
+
+  <div class="erro" id="erro" role="alert" hidden></div>
+  <ul class="lista" id="lista"></ul>
+
+  <section class="painel" id="painel" hidden>
+    <h2>Configuração</h2>
+    <div class="grid">
+      <label class="f">Tributos em “Pagamento”
+        <small>Uma coluna “&lt;TRIBUTO&gt; Pagamento” para cada</small>
+        <input type="text" id="tiposPag">
+      </label>
+      <label class="f">Tributos em “Item Tributos”
+        <small>Uma coluna “&lt;TRIBUTO&gt; - &lt;métrica&gt;” para cada</small>
+        <input type="text" id="tiposItem">
+      </label>
+    </div>
+    <div class="linha">
+      <label class="f">Métricas de “Item Tributos” a separar</label>
+      <div class="metricas" id="metricas"></div>
+    </div>
+    <details>
+      <summary>Opções avançadas</summary>
+      <div class="grid linha">
+        <label class="f">Tributo repetido na mesma linha
+          <select id="duplicados">
+            <option value="first">Usar a 1ª ocorrência (igual ao modelo jan–jul)</option>
+            <option value="sum">Somar as ocorrências</option>
+          </select>
+        </label>
+        <label class="chk" style="align-self:end"><input type="checkbox" id="empilhar"> Empilhar todos os arquivos em um só</label>
+      </div>
+    </details>
+    <div class="barra">
+      <button class="run" id="run">Tratar planilha(s)</button>
+      <button class="ghost" id="reset">Limpar</button>
+    </div>
+  </section>
+
+  <div class="saida" id="saida"></div>
+
+  <footer>
+    Regra: a coluna de nomes e as colunas de valores são divididas por <code>|</code> e casadas pela posição;
+    vírgula decimal vira número; alíquotas ÷ 100; tributo ausente na linha = 0.
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
