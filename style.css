@@ -14,20 +14,21 @@ body{background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system
 header h1{font-size:1.6rem;margin:0 0 4px}
 header p{margin:0;color:var(--muted)}
 .muted{color:var(--muted);font-size:.9rem}
-
-.drop{margin-top:24px;border:2px dashed var(--line);background:var(--card);border-radius:var(--radius);
+ 
+.drop{display:block;width:100%;margin-top:24px;border:2px dashed var(--line);background:var(--card);border-radius:var(--radius);
   padding:36px 20px;text-align:center;cursor:pointer;transition:.15s}
 .drop:hover,.drop.over{border-color:var(--brand);background:color-mix(in srgb,var(--brand) 6%,var(--card))}
-.drop strong{display:block;font-size:1.05rem}
+.drop strong{display:block;font-size:1.05rem;margin-bottom:4px}
+.drop span{display:block}
 .drop input{display:none}
-
+ 
 .lista{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
 .lista li{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);
   border-radius:10px;padding:10px 14px}
 .lista .nome{font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .x{border:0;background:none;color:var(--muted);font-size:1.3rem;cursor:pointer;line-height:1}
 .x:hover{color:var(--err)}
-
+ 
 .painel{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
 .painel h2{margin:0 0 12px;font-size:1.05rem}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -42,13 +43,13 @@ input[type=text]:focus,select:focus{outline:2px solid var(--brand);outline-offse
 .linha{margin-top:14px}
 details{margin-top:14px}
 summary{cursor:pointer;color:var(--muted);font-size:.9rem}
-
+ 
 .btn,.run{border:0;background:var(--brand);color:var(--brand-ink);padding:11px 18px;border-radius:9px;
   font:inherit;font-weight:600;cursor:pointer}
 .btn:hover,.run:hover{filter:brightness(1.08)}
 .ghost{background:none;border:1px solid var(--line);color:var(--ink);padding:11px 18px;border-radius:9px;font:inherit;cursor:pointer}
 .barra{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
-
+ 
 .erro{margin-top:16px;color:var(--err);background:color-mix(in srgb,var(--err) 10%,var(--card));
   border:1px solid var(--err);border-radius:10px;padding:10px 14px}
 .saida{margin-top:20px;display:grid;gap:14px}
@@ -64,3 +65,4 @@ summary{cursor:pointer;color:var(--muted);font-size:.9rem}
 .acoes{display:flex;gap:10px;flex-wrap:wrap}
 footer{margin-top:40px;color:var(--muted);font-size:.82rem}
 footer code{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+ 
