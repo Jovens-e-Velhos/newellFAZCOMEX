@@ -233,6 +233,16 @@
 
   function baixar(nome, aoa) {
     const ws = XLSX.utils.aoa_to_sheet(aoa, { cellDates: true });
+    // colunas "<TRIBUTO> - Valor Alíquota…" => formato de porcentagem (0,18 vira 18,00%)
+    const range = XLSX.utils.decode_range(ws['!ref']);
+    for (let c = range.s.c; c <= range.e.c; c++) {
+      const h = ws[XLSX.utils.encode_cell({ r: 0, c })];
+      if (!h || !/^[A-Za-z0-9_]+ - .*Alíquota/i.test(String(h.v))) continue;
+      for (let r = 1; r <= range.e.r; r++) {
+        const cell = ws[XLSX.utils.encode_cell({ r, c })];
+        if (cell && cell.t === 'n') cell.z = '0.00%';
+      }
+    }
     ws['!autofilter'] = { ref: ws['!ref'] };
     ws['!freeze'] = { xSplit: 0, ySplit: 1 };
     const wb = XLSX.utils.book_new();
